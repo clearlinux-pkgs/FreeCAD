@@ -1,0 +1,15 @@
+# This file contains additional build requirements that did not get
+# picked up automatically. One name per line, no whitespace.
+xerces-c-dev
+OpenCASCADE-dev
+VTK-dev
+openmpi-dev
+libMED-dev
+buildreq-kde
+glu-dev
+eigen-dev
+Coin-dev
+pyside2-setup
+pyside2-setup-dev
+libspnav-dev
+boost-dev
