@@ -13,3 +13,5 @@ pyside2-setup
 pyside2-setup-dev
 libspnav-dev
 boost-dev
+matplotlib
+graphviz
