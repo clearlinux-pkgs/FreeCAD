@@ -4,10 +4,10 @@
 #
 Name     : FreeCAD
 Version  : 1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc
-Release  : 2
+Release  : 3
 URL      : https://github.com/FreeCAD/FreeCAD/archive/1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc.tar.gz
 Source0  : https://github.com/FreeCAD/FreeCAD/archive/1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc.tar.gz
-Summary  : Python Lex & Yacc
+Summary  : A general purpose 3D CAD modeler
 Group    : Development/Tools
 License  : Artistic-2.0 BSD-3-Clause LGPL-2.0 LGPL-2.1 LGPL-3.0
 Requires: FreeCAD-bin = %{version}-%{release}
@@ -45,15 +45,14 @@ BuildRequires : zlib-dev
 Patch1: python3.patch
 
 %description
-PLY is yet another implementation of lex and yacc for Python. Some notable
-        features include the fact that its implemented entirely in Python and it
-        uses LALR(1) parsing which is efficient and well suited for larger grammars.
-        
-        PLY provides most of the standard lex/yacc features including support for empty 
-        productions, precedence rules, error recovery, and support for ambiguous grammars. 
-        
-        PLY is extremely easy to use and provides very extensive error checking. 
-        It is compatible with both Python 2 and Python 3.
+FreeCAD
+-------
+FreeCAD is a general purpose feature-based, parametric 3D modeler for
+CAD, MCAD, CAx, CAE and PLM, aimed directly at mechanical engineering
+and product design but also fits a wider range of uses in engineering,
+such as architecture or other engineering specialties. It is 100% Open
+Source (LGPL2+ license) and extremely modular, allowing for very
+advanced extension and customization.
 
 %package bin
 Summary: bin components for the FreeCAD package.
@@ -108,7 +107,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1546355870
+export SOURCE_DATE_EPOCH=1546371288
 mkdir -p clr-build
 pushd clr-build
 %cmake .. -DOCC_INCLUDE_DIR=/usr/include/oce -DBUILD_QT5=on  -DBOOST_LIBRARYDIR=/usr/lib64 -DCMAKE_INSTALL_DATADIR=/usr/share/freecad/data -DCMAKE_INSTALL_DOCDIR=/usr/share/doc/freecad/
@@ -116,7 +115,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1546355870
+export SOURCE_DATE_EPOCH=1546371288
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/FreeCAD
 cp LICENSE %{buildroot}/usr/share/package-licenses/FreeCAD/LICENSE
