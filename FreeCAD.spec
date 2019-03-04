@@ -4,10 +4,10 @@
 #
 Name     : FreeCAD
 Version  : 1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc
-Release  : 4
+Release  : 5
 URL      : https://github.com/FreeCAD/FreeCAD/archive/1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc.tar.gz
 Source0  : https://github.com/FreeCAD/FreeCAD/archive/1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc.tar.gz
-Summary  : A general purpose 3D CAD modeler
+Summary  : Python Lex & Yacc
 Group    : Development/Tools
 License  : Artistic-2.0 BSD-3-Clause LGPL-2.0 LGPL-2.1 LGPL-3.0
 Requires: FreeCAD-bin = %{version}-%{release}
@@ -21,7 +21,6 @@ BuildRequires : boost-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-distutils3
 BuildRequires : buildreq-kde
-BuildRequires : cmake
 BuildRequires : doxygen
 BuildRequires : eigen-dev
 BuildRequires : freetype-dev
@@ -45,14 +44,15 @@ BuildRequires : zlib-dev
 Patch1: python3.patch
 
 %description
-FreeCAD
--------
-FreeCAD is a general purpose feature-based, parametric 3D modeler for
-CAD, MCAD, CAx, CAE and PLM, aimed directly at mechanical engineering
-and product design but also fits a wider range of uses in engineering,
-such as architecture or other engineering specialties. It is 100% Open
-Source (LGPL2+ license) and extremely modular, allowing for very
-advanced extension and customization.
+PLY is yet another implementation of lex and yacc for Python. Some notable
+        features include the fact that its implemented entirely in Python and it
+        uses LALR(1) parsing which is efficient and well suited for larger grammars.
+        
+        PLY provides most of the standard lex/yacc features including support for empty 
+        productions, precedence rules, error recovery, and support for ambiguous grammars. 
+        
+        PLY is extremely easy to use and provides very extensive error checking. 
+        It is compatible with both Python 2 and Python 3.
 
 %package bin
 Summary: bin components for the FreeCAD package.
@@ -107,20 +107,22 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1546371288
+export SOURCE_DATE_EPOCH=1551731197
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake .. -DOCC_INCLUDE_DIR=/usr/include/oce -DBUILD_QT5=on  -DBOOST_LIBRARYDIR=/usr/lib64 -DCMAKE_INSTALL_DATADIR=/usr/share/freecad/data -DCMAKE_INSTALL_DOCDIR=/usr/share/doc/freecad/
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1546371288
+export SOURCE_DATE_EPOCH=1551731197
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/FreeCAD
 cp LICENSE %{buildroot}/usr/share/package-licenses/FreeCAD/LICENSE
 cp src/3rdParty/libkdtree/COPYING %{buildroot}/usr/share/package-licenses/FreeCAD/src_3rdParty_libkdtree_COPYING
 cp src/3rdParty/salomesmesh/LICENCE.lgpl.txt %{buildroot}/usr/share/package-licenses/FreeCAD/src_3rdParty_salomesmesh_LICENCE.lgpl.txt
+cp src/CXX/COPYRIGHT %{buildroot}/usr/share/package-licenses/FreeCAD/src_CXX_COPYRIGHT
 cp src/Mod/Path/libarea/kurve/License.txt %{buildroot}/usr/share/package-licenses/FreeCAD/src_Mod_Path_libarea_kurve_License.txt
 cp vagrant/Xenial/bin/license.txt %{buildroot}/usr/share/package-licenses/FreeCAD/vagrant_Xenial_bin_license.txt
 cp vagrant/bin/license.txt %{buildroot}/usr/share/package-licenses/FreeCAD/vagrant_bin_license.txt
@@ -1242,6 +1244,7 @@ popd
 /usr/share/package-licenses/FreeCAD/LICENSE
 /usr/share/package-licenses/FreeCAD/src_3rdParty_libkdtree_COPYING
 /usr/share/package-licenses/FreeCAD/src_3rdParty_salomesmesh_LICENCE.lgpl.txt
+/usr/share/package-licenses/FreeCAD/src_CXX_COPYRIGHT
 /usr/share/package-licenses/FreeCAD/src_Mod_Path_libarea_kurve_License.txt
 /usr/share/package-licenses/FreeCAD/vagrant_Xenial_bin_license.txt
 /usr/share/package-licenses/FreeCAD/vagrant_bin_license.txt
