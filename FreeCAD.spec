@@ -4,12 +4,12 @@
 #
 Name     : FreeCAD
 Version  : 1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc
-Release  : 6
+Release  : 7
 URL      : https://github.com/FreeCAD/FreeCAD/archive/1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc.tar.gz
 Source0  : https://github.com/FreeCAD/FreeCAD/archive/1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc.tar.gz
 Summary  : Python Lex & Yacc
 Group    : Development/Tools
-License  : Artistic-2.0 BSD-3-Clause LGPL-2.0 LGPL-2.1 LGPL-3.0
+License  : Artistic-2.0 BSD-3-Clause CC-BY-SA-3.0 GPL-2.0 GPL-3.0 LGPL-2.1
 Requires: FreeCAD-bin = %{version}-%{release}
 Requires: FreeCAD-data = %{version}-%{release}
 Requires: FreeCAD-lib = %{version}-%{release}
@@ -107,7 +107,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1551731197
+export SOURCE_DATE_EPOCH=1555969068
 mkdir -p clr-build
 pushd clr-build
 export LDFLAGS="${LDFLAGS} -fno-lto"
@@ -116,14 +116,17 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1551731197
+export SOURCE_DATE_EPOCH=1555969068
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/FreeCAD
 cp LICENSE %{buildroot}/usr/share/package-licenses/FreeCAD/LICENSE
+cp data/License.txt %{buildroot}/usr/share/package-licenses/FreeCAD/data_License.txt
 cp src/3rdParty/libkdtree/COPYING %{buildroot}/usr/share/package-licenses/FreeCAD/src_3rdParty_libkdtree_COPYING
 cp src/3rdParty/salomesmesh/LICENCE.lgpl.txt %{buildroot}/usr/share/package-licenses/FreeCAD/src_3rdParty_salomesmesh_LICENCE.lgpl.txt
 cp src/CXX/COPYRIGHT %{buildroot}/usr/share/package-licenses/FreeCAD/src_CXX_COPYRIGHT
+cp src/Mod/Idf/Idflibs/License.txt %{buildroot}/usr/share/package-licenses/FreeCAD/src_Mod_Idf_Idflibs_License.txt
 cp src/Mod/Path/libarea/kurve/License.txt %{buildroot}/usr/share/package-licenses/FreeCAD/src_Mod_Path_libarea_kurve_License.txt
+cp src/Mod/TechDraw/Gui/Resources/fonts/osifont.license %{buildroot}/usr/share/package-licenses/FreeCAD/src_Mod_TechDraw_Gui_Resources_fonts_osifont.license
 cp vagrant/Xenial/bin/license.txt %{buildroot}/usr/share/package-licenses/FreeCAD/vagrant_Xenial_bin_license.txt
 cp vagrant/bin/license.txt %{buildroot}/usr/share/package-licenses/FreeCAD/vagrant_bin_license.txt
 pushd clr-build
@@ -1242,9 +1245,12 @@ popd
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/FreeCAD/LICENSE
+/usr/share/package-licenses/FreeCAD/data_License.txt
 /usr/share/package-licenses/FreeCAD/src_3rdParty_libkdtree_COPYING
 /usr/share/package-licenses/FreeCAD/src_3rdParty_salomesmesh_LICENCE.lgpl.txt
 /usr/share/package-licenses/FreeCAD/src_CXX_COPYRIGHT
+/usr/share/package-licenses/FreeCAD/src_Mod_Idf_Idflibs_License.txt
 /usr/share/package-licenses/FreeCAD/src_Mod_Path_libarea_kurve_License.txt
+/usr/share/package-licenses/FreeCAD/src_Mod_TechDraw_Gui_Resources_fonts_osifont.license
 /usr/share/package-licenses/FreeCAD/vagrant_Xenial_bin_license.txt
 /usr/share/package-licenses/FreeCAD/vagrant_bin_license.txt
