@@ -15,3 +15,4 @@ libspnav-dev
 boost-dev
 matplotlib
 graphviz
+qttools-staticdev

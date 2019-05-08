@@ -4,7 +4,7 @@
 #
 Name     : FreeCAD
 Version  : 1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc
-Release  : 7
+Release  : 8
 URL      : https://github.com/FreeCAD/FreeCAD/archive/1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc.tar.gz
 Source0  : https://github.com/FreeCAD/FreeCAD/archive/1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc.tar.gz
 Summary  : Python Lex & Yacc
@@ -38,6 +38,7 @@ BuildRequires : pyside2-setup
 BuildRequires : pyside2-setup-dev
 BuildRequires : python3
 BuildRequires : python3-dev
+BuildRequires : qttools-staticdev
 BuildRequires : swig
 BuildRequires : xerces-c-dev
 BuildRequires : zlib-dev
@@ -107,7 +108,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555969068
+export SOURCE_DATE_EPOCH=1557278296
 mkdir -p clr-build
 pushd clr-build
 export LDFLAGS="${LDFLAGS} -fno-lto"
@@ -116,7 +117,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1555969068
+export SOURCE_DATE_EPOCH=1557278296
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/FreeCAD
 cp LICENSE %{buildroot}/usr/share/package-licenses/FreeCAD/LICENSE
