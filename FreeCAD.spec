@@ -4,7 +4,7 @@
 #
 Name     : FreeCAD
 Version  : 1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc
-Release  : 9
+Release  : 10
 URL      : https://github.com/FreeCAD/FreeCAD/archive/1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc.tar.gz
 Source0  : https://github.com/FreeCAD/FreeCAD/archive/1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc.tar.gz
 Summary  : Python Lex & Yacc
@@ -21,15 +21,18 @@ BuildRequires : boost-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-distutils3
 BuildRequires : buildreq-kde
+BuildRequires : double-conversion-dev
 BuildRequires : doxygen
 BuildRequires : eigen-dev
 BuildRequires : freetype-dev
+BuildRequires : glew-dev
 BuildRequires : glu-dev
 BuildRequires : graphviz
 BuildRequires : hdf5-dev
 BuildRequires : libMED-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
 BuildRequires : libspnav-dev
+BuildRequires : lz4-dev
 BuildRequires : matplotlib
 BuildRequires : mesa-dev
 BuildRequires : openmpi-dev
@@ -41,6 +44,7 @@ BuildRequires : python3-dev
 BuildRequires : qttools-staticdev
 BuildRequires : swig
 BuildRequires : xerces-c-dev
+BuildRequires : xz-dev
 BuildRequires : zlib-dev
 Patch1: python3.patch
 
@@ -108,16 +112,20 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557278296
+export SOURCE_DATE_EPOCH=1561763722
 mkdir -p clr-build
 pushd clr-build
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %cmake .. -DOCC_INCLUDE_DIR=/usr/include/oce -DBUILD_QT5=on  -DBOOST_LIBRARYDIR=/usr/lib64 -DCMAKE_INSTALL_DATADIR=/usr/share/freecad/data -DCMAKE_INSTALL_DOCDIR=/usr/share/doc/freecad/
 make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1557278296
+export SOURCE_DATE_EPOCH=1561763722
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/FreeCAD
 cp LICENSE %{buildroot}/usr/share/package-licenses/FreeCAD/LICENSE

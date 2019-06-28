@@ -5,11 +5,15 @@ OpenCASCADE-dev
 VTK-dev
 boost-dev
 buildreq-kde
+double-conversion-dev
 eigen-dev
+glew-dev
 glu-dev
 graphviz
 libMED-dev
 libspnav-dev
+lz4-dev
+xz-dev
 matplotlib
 openmpi-dev
 pyside2-setup
