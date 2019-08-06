@@ -4,7 +4,7 @@
 #
 Name     : FreeCAD
 Version  : 1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc
-Release  : 10
+Release  : 11
 URL      : https://github.com/FreeCAD/FreeCAD/archive/1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc.tar.gz
 Source0  : https://github.com/FreeCAD/FreeCAD/archive/1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc.tar.gz
 Summary  : Python Lex & Yacc
@@ -111,8 +111,8 @@ license components for the FreeCAD package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1561763722
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1565134668
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -125,7 +125,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1561763722
+export SOURCE_DATE_EPOCH=1565134668
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/FreeCAD
 cp LICENSE %{buildroot}/usr/share/package-licenses/FreeCAD/LICENSE
