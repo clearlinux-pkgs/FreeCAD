@@ -56,9 +56,7 @@ libm.so.6
 libmed.so.1
 libmedC.so.1
 libpthread.so.0
-libpyside2.cpython-37m-x86_64-linux-gnu.so.5.11
 libpython3.7m.so.1.0
-libshiboken2.cpython-37m-x86_64-linux-gnu.so.5.11
 libspnav.so.0
 libstdc++.so.6
 libvtkCommonCore-8.2.so.1
