@@ -18,5 +18,5 @@ matplotlib
 openmpi-dev
 pyside2-setup
 pyside2-setup-dev
-qttools-staticdev
+qttools-dev
 xerces-c-dev

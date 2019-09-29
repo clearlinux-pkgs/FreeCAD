@@ -4,7 +4,7 @@
 #
 Name     : FreeCAD
 Version  : 1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc
-Release  : 11
+Release  : 12
 URL      : https://github.com/FreeCAD/FreeCAD/archive/1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc.tar.gz
 Source0  : https://github.com/FreeCAD/FreeCAD/archive/1030e1cc64dd8ffc02ea0c858c8950b56e8da7bc.tar.gz
 Summary  : Python Lex & Yacc
@@ -41,7 +41,7 @@ BuildRequires : pyside2-setup
 BuildRequires : pyside2-setup-dev
 BuildRequires : python3
 BuildRequires : python3-dev
-BuildRequires : qttools-staticdev
+BuildRequires : qttools-dev
 BuildRequires : swig
 BuildRequires : xerces-c-dev
 BuildRequires : xz-dev
