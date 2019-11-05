@@ -4,10 +4,10 @@
 #
 Name     : FreeCAD
 Version  : 0.18.4
-Release  : 14
+Release  : 16
 URL      : https://github.com/FreeCAD/FreeCAD/archive/0.18.4/FreeCAD-0.18.4.tar.gz
 Source0  : https://github.com/FreeCAD/FreeCAD/archive/0.18.4/FreeCAD-0.18.4.tar.gz
-Summary  : A general purpose 3D CAD modeler
+Summary  : Python Lex & Yacc
 Group    : Development/Tools
 License  : Artistic-2.0 BSD-3-Clause CC-BY-SA-3.0 GPL-2.0 GPL-3.0 LGPL-2.1
 Requires: FreeCAD-bin = %{version}-%{release}
@@ -51,16 +51,18 @@ BuildRequires : xerces-c-dev
 BuildRequires : xz-dev
 BuildRequires : zlib-dev
 Patch1: python3.patch
+Patch2: 0001-Workaround-for-py3.8-compat-fix-merged-upstream.patch
 
 %description
-FreeCAD
--------
-FreeCAD is a general purpose feature-based, parametric 3D modeler for
-CAD, MCAD, CAx, CAE and PLM, aimed directly at mechanical engineering
-and product design but also fits a wider range of uses in engineering,
-such as architecture or other engineering specialties. It is 100% Open
-Source (LGPL2+ license) and extremely modular, allowing for very
-advanced extension and customization.
+PLY is yet another implementation of lex and yacc for Python. Some notable
+        features include the fact that its implemented entirely in Python and it
+        uses LALR(1) parsing which is efficient and well suited for larger grammars.
+        
+        PLY provides most of the standard lex/yacc features including support for empty 
+        productions, precedence rules, error recovery, and support for ambiguous grammars. 
+        
+        PLY is extremely easy to use and provides very extensive error checking. 
+        It is compatible with both Python 2 and Python 3.
 
 %package bin
 Summary: bin components for the FreeCAD package.
@@ -108,17 +110,18 @@ license components for the FreeCAD package.
 
 %prep
 %setup -q -n FreeCAD-0.18.4
+cd %{_builddir}/FreeCAD-0.18.4
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1572559227
+export SOURCE_DATE_EPOCH=1573675975
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -129,7 +132,7 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1572559227
+export SOURCE_DATE_EPOCH=1573675975
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/FreeCAD
 cp %{_builddir}/FreeCAD-0.18.4/LICENSE %{buildroot}/usr/share/package-licenses/FreeCAD/208f2fb3798571ba86c2c981a572a524e176eabc

@@ -1,0 +1,25 @@
+From 95d767ad656c8c3c6b7794ec106ae38da080b0ba Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Wed, 13 Nov 2019 11:06:06 -0800
+Subject: [PATCH] Workaround for py3.8 compat, fix merged upstream
+
+---
+ src/Base/swigpyrun.inl | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/Base/swigpyrun.inl b/src/Base/swigpyrun.inl
+index 0eedaaa..65bba62 100644
+--- a/src/Base/swigpyrun.inl
++++ b/src/Base/swigpyrun.inl
+@@ -72,7 +72,7 @@ void cleanupSWIG_T(const char* TypeName)
+ 
+     PyObject *module, *dict;
+     PyInterpreterState *interp = PyThreadState_GET()->interp;
+-    PyObject *modules = interp->modules;
++    PyObject *modules = PyImport_GetModuleDict();
+     module = PyDict_GetItemString(modules, "__builtin__");
+     if (module != NULL && PyModule_Check(module)) {
+         dict = PyModule_GetDict(module);
+-- 
+2.24.0
+
