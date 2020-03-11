@@ -4,7 +4,7 @@
 #
 Name     : FreeCAD
 Version  : 0.18.4
-Release  : 16
+Release  : 17
 URL      : https://github.com/FreeCAD/FreeCAD/archive/0.18.4/FreeCAD-0.18.4.tar.gz
 Source0  : https://github.com/FreeCAD/FreeCAD/archive/0.18.4/FreeCAD-0.18.4.tar.gz
 Summary  : Python Lex & Yacc
@@ -52,6 +52,7 @@ BuildRequires : xz-dev
 BuildRequires : zlib-dev
 Patch1: python3.patch
 Patch2: 0001-Workaround-for-py3.8-compat-fix-merged-upstream.patch
+Patch3: 0002-Update-FindPySide2Tools-for-PySide2-5.14-issue-4229.patch
 
 %description
 PLY is yet another implementation of lex and yacc for Python. Some notable
@@ -113,13 +114,14 @@ license components for the FreeCAD package.
 cd %{_builddir}/FreeCAD-0.18.4
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573675975
+export SOURCE_DATE_EPOCH=1583954105
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -132,7 +134,7 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1573675975
+export SOURCE_DATE_EPOCH=1583954105
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/FreeCAD
 cp %{_builddir}/FreeCAD-0.18.4/LICENSE %{buildroot}/usr/share/package-licenses/FreeCAD/208f2fb3798571ba86c2c981a572a524e176eabc
