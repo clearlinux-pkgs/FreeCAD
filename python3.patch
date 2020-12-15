@@ -1,11 +1,13 @@
---- FreeCAD-0.17/CMakeLists.txt~	2018-04-06 08:48:37.000000000 +0000
-+++ FreeCAD-0.17/CMakeLists.txt	2018-12-07 23:30:09.075715117 +0000
-@@ -445,7 +445,7 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index fe55662..5a20c5e 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -434,7 +434,7 @@ if(NOT FREECAD_LIBPACK_USE OR FREECAD_LIBPACK_CHECKFILE_CLBUNDLER)
  
  # http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=677598
  # Acceptable versions of Python
 -set(Python_ADDITIONAL_VERSIONS "2.7")
-+set(Python_ADDITIONAL_VERSIONS "3.8")
++set(Python_ADDITIONAL_VERSIONS "3.9")
  
  # For building on OS X
- if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin" AND NOT BUILD_WITH_CONDA)

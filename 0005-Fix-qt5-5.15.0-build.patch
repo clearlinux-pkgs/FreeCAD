@@ -1,0 +1,21 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: bartoszek <bartoszek.github@bartus.33mail.com>
+Date: Thu, 4 Jun 2020 14:10:08 +0200
+Subject: [PATCH] Fix qt5:5.15.0 build.
+
+---
+ src/Mod/Image/Gui/OpenGLImageBox.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/Mod/Image/Gui/OpenGLImageBox.cpp b/src/Mod/Image/Gui/OpenGLImageBox.cpp
+index 404a1a1..bb22ae0 100644
+--- a/src/Mod/Image/Gui/OpenGLImageBox.cpp
++++ b/src/Mod/Image/Gui/OpenGLImageBox.cpp
+@@ -26,6 +26,7 @@
+ # include <QSurfaceFormat>
+ # include <QMessageBox>
+ # include <QPainter>
++# include <QPainterPath>
+ #endif
+ 
+ #if defined(__MINGW32__)

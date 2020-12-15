@@ -1,0 +1,79 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Tue, 15 Dec 2020 20:58:44 +0000
+Subject: [PATCH] Fix build with Qt 5.15 and newer
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ src/Gui/NaviCube.cpp                  | 2 +-
+ src/Mod/TechDraw/Gui/QGICenterLine.h  | 2 +-
+ src/Mod/TechDraw/Gui/QGIHighlight.h   | 2 +-
+ src/Mod/TechDraw/Gui/QGIMatting.h     | 2 +-
+ src/Mod/TechDraw/Gui/QGISectionLine.h | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/src/Gui/NaviCube.cpp b/src/Gui/NaviCube.cpp
+index 0738a72..d19cff9 100644
+--- a/src/Gui/NaviCube.cpp
++++ b/src/Gui/NaviCube.cpp
+@@ -107,7 +107,7 @@
+ #include <QMenu>
+ #include <QAction>
+ #include <QImage>
+-#include <QPainterPath>
++#include <QtGui/QPainterPath>
+ #include <QApplication>
+ 
+ #if defined(HAVE_QT5_OPENGL)
+diff --git a/src/Mod/TechDraw/Gui/QGICenterLine.h b/src/Mod/TechDraw/Gui/QGICenterLine.h
+index c018ccc..4ae3490 100644
+--- a/src/Mod/TechDraw/Gui/QGICenterLine.h
++++ b/src/Mod/TechDraw/Gui/QGICenterLine.h
+@@ -24,7 +24,7 @@
+ #define TECHDRAWGUI_QGICENTERLINE_H
+ 
+ #include <QPointF>
+-#include <QPainterPath>
++#include <QtGui/QPainterPath>
+ #include <QColor>
+ 
+ #include <Base/Vector3D.h>
+diff --git a/src/Mod/TechDraw/Gui/QGIHighlight.h b/src/Mod/TechDraw/Gui/QGIHighlight.h
+index 809f9b3..fe41097 100644
+--- a/src/Mod/TechDraw/Gui/QGIHighlight.h
++++ b/src/Mod/TechDraw/Gui/QGIHighlight.h
+@@ -28,7 +28,7 @@
+ #include <QGraphicsTextItem>
+ #include <QGraphicsRectItem>
+ #include <QGraphicsEllipseItem>
+-#include <QPainterPath>
++#include <QtGui/QPainterPath>
+ #include <QColor>
+ 
+ #include <Base/Vector3D.h>
+diff --git a/src/Mod/TechDraw/Gui/QGIMatting.h b/src/Mod/TechDraw/Gui/QGIMatting.h
+index e24ec97..7e674de 100644
+--- a/src/Mod/TechDraw/Gui/QGIMatting.h
++++ b/src/Mod/TechDraw/Gui/QGIMatting.h
+@@ -27,7 +27,7 @@
+ #include <QGraphicsItemGroup>
+ #include <QGraphicsRectItem>
+ #include <QGraphicsPathItem>
+-#include <QPainterPath>
++#include <QtGui/QPainterPath>
+ #include <QPointF>
+ 
+ QT_BEGIN_NAMESPACE
+diff --git a/src/Mod/TechDraw/Gui/QGISectionLine.h b/src/Mod/TechDraw/Gui/QGISectionLine.h
+index 2e167ca..c37716d 100644
+--- a/src/Mod/TechDraw/Gui/QGISectionLine.h
++++ b/src/Mod/TechDraw/Gui/QGISectionLine.h
+@@ -26,7 +26,7 @@
+ #include <QFont>
+ #include <QPointF>
+ #include <QGraphicsTextItem>
+-#include <QPainterPath>
++#include <QtGui/QPainterPath>
+ #include <QColor>
+ 
+ #include <Base/Vector3D.h>

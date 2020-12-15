@@ -1,0 +1,25 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Tue, 15 Dec 2020 20:10:11 +0000
+Subject: [PATCH] boost: use global placeholders
+
+The global placeholders are deprecated, but it's easier to specify the
+preprocessor macro than to patch every affected source file.
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ CMakeLists.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 5a20c5e..7cf8113 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -39,6 +39,7 @@ include(cMake/FreeCadMacros.cmake)
+ 
+ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cMake")
+ 
++add_compile_definitions(BOOST_BIND_GLOBAL_PLACEHOLDERS=1)
+ 
+ #if(CMAKE_CFG_INTDIR STREQUAL .)
+     # No Debug/Release output paths

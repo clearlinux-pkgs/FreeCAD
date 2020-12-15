@@ -1,0 +1,36 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Tue, 15 Dec 2020 19:02:40 +0000
+Subject: [PATCH] Fix build with python 3.9
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Fixes this build error:
+error: ‘PyTypeObject’ {aka ‘struct _typeobject’} has no member named ‘tp_print’
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ src/CXX/Python3/cxx_extensions.cxx | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/src/CXX/Python3/cxx_extensions.cxx b/src/CXX/Python3/cxx_extensions.cxx
+index fb3da45..6b5610f 100644
+--- a/src/CXX/Python3/cxx_extensions.cxx
++++ b/src/CXX/Python3/cxx_extensions.cxx
+@@ -381,7 +381,6 @@ PythonType::PythonType( size_t basic_size, int itemsize, const char *default_nam
+ 
+     // Methods to implement standard operations
+     table->tp_dealloc = (destructor)standard_dealloc;
+-    table->tp_print = 0;
+     table->tp_getattr = 0;
+     table->tp_setattr = 0;
+     table->tp_repr = 0;
+@@ -524,7 +523,6 @@ PythonType &PythonType::supportClass()
+ #ifdef PYCXX_PYTHON_2TO3
+ PythonType &PythonType::supportPrint()
+ {
+-    table->tp_print = print_handler;
+     return *this;
+ }
+ #endif

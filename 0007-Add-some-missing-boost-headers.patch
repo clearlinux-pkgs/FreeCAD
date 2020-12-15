@@ -1,0 +1,43 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Tue, 15 Dec 2020 22:30:35 +0000
+Subject: [PATCH] Add some missing boost headers
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Otherwise, we see compile errors like this:
+
+    error: ‘_1’ was not declared in this scope
+    error: ‘_2’ was not declared in this scope
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ src/Gui/DAGView/DAGView.cpp                  | 1 +
+ src/Mod/Sketcher/Gui/TaskSketcherGeneral.cpp | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/src/Gui/DAGView/DAGView.cpp b/src/Gui/DAGView/DAGView.cpp
+index 501a424..76fae3c 100644
+--- a/src/Gui/DAGView/DAGView.cpp
++++ b/src/Gui/DAGView/DAGView.cpp
+@@ -33,6 +33,7 @@
+ #include <App/Document.h>
+ #include <Gui/Document.h>
+ #include <Gui/Application.h>
++#include <boost/bind.hpp>
+ 
+ #include "DAGModel.h"
+ #include "DAGView.h"
+diff --git a/src/Mod/Sketcher/Gui/TaskSketcherGeneral.cpp b/src/Mod/Sketcher/Gui/TaskSketcherGeneral.cpp
+index 8b0e884..4fadb8e 100644
+--- a/src/Mod/Sketcher/Gui/TaskSketcherGeneral.cpp
++++ b/src/Mod/Sketcher/Gui/TaskSketcherGeneral.cpp
+@@ -35,6 +35,7 @@
+ #include <Gui/WaitCursor.h>
+ #include <Base/Tools.h>
+ #include <Base/UnitsApi.h>
++#include <boost/bind.hpp>
+ 
+ #include "ViewProviderSketch.h"
+ 
