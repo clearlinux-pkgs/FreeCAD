@@ -4,7 +4,7 @@
 #
 Name     : FreeCAD
 Version  : 0.18.5
-Release  : 23
+Release  : 24
 URL      : https://github.com/FreeCAD/FreeCAD/archive/0.18.5/FreeCAD-0.18.5.tar.gz
 Source0  : https://github.com/FreeCAD/FreeCAD/archive/0.18.5/FreeCAD-0.18.5.tar.gz
 Summary  : Python Lex & Yacc
@@ -41,6 +41,7 @@ BuildRequires : matplotlib
 BuildRequires : mesa-dev
 BuildRequires : openmpi-dev
 BuildRequires : pkg-config
+BuildRequires : pybind11-python3
 BuildRequires : pyside2-setup
 BuildRequires : pyside2-setup-dev
 BuildRequires : python3
@@ -62,6 +63,7 @@ Patch5: 0004-Fix-build-with-Qt-5.15-and-newer.patch
 Patch6: 0005-Fix-qt5-5.15.0-build.patch
 Patch7: 0006-boost-use-global-placeholders.patch
 Patch8: 0007-Add-some-missing-boost-headers.patch
+Patch9: 0008-Make-smesh-compile-with-vtk9.patch
 
 %description
 PLY is yet another implementation of lex and yacc for Python. Some notable
@@ -129,13 +131,14 @@ cd %{_builddir}/FreeCAD-0.18.5
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1608073711
+export SOURCE_DATE_EPOCH=1614022238
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -143,7 +146,8 @@ export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
 export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
-%cmake .. -DOCC_INCLUDE_DIR=/usr/include/oce \
+%cmake .. -Wno-dev \
+-DOCC_INCLUDE_DIR=/usr/include/oce \
 -DBUILD_QT5=on \
 -DBOOST_LIBRARYDIR=/usr/lib64 \
 -DCMAKE_INSTALL_DATADIR=/usr/share/freecad/data \
@@ -152,7 +156,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1608073711
+export SOURCE_DATE_EPOCH=1614022238
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/FreeCAD
 cp %{_builddir}/FreeCAD-0.18.5/LICENSE %{buildroot}/usr/share/package-licenses/FreeCAD/208f2fb3798571ba86c2c981a572a524e176eabc

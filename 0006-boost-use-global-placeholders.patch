@@ -12,7 +12,7 @@ Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 5a20c5e..7cf8113 100644
+index fe55662..0c5a8d7 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -39,6 +39,7 @@ include(cMake/FreeCadMacros.cmake)

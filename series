@@ -6,3 +6,4 @@ python3.patch
 0005-Fix-qt5-5.15.0-build.patch
 0006-boost-use-global-placeholders.patch
 0007-Add-some-missing-boost-headers.patch
+0008-Make-smesh-compile-with-vtk9.patch
