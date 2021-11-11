@@ -4,7 +4,7 @@
 #
 Name     : FreeCAD
 Version  : 0.18.5
-Release  : 26
+Release  : 27
 URL      : https://github.com/FreeCAD/FreeCAD/archive/0.18.5/FreeCAD-0.18.5.tar.gz
 Source0  : https://github.com/FreeCAD/FreeCAD/archive/0.18.5/FreeCAD-0.18.5.tar.gz
 Summary  : Python Lex & Yacc
