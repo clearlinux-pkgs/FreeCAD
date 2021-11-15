@@ -4,3 +4,4 @@
 -DBOOST_LIBRARYDIR=/usr/lib64
 -DCMAKE_INSTALL_DATADIR=/usr/share/freecad/data
 -DCMAKE_INSTALL_DOCDIR=/usr/share/doc/freecad/
+-DFORCE_LIMITED_API=1
