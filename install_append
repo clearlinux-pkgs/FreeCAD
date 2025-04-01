@@ -1,0 +1,6 @@
+## Cleanup files that landed in the wrong place
+# The Ext directory seems to be misinstalled in the first place
+mv %{buildroot}/usr/Ext %{buildroot}/usr/share/freecad/data/
+
+# This stuff seems redundant with what's already in /usr/share/freecad/data/Mod
+rm -rf %{buildroot}/usr/Mod
