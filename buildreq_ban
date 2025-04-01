@@ -1,3 +1,9 @@
 # This file contains build requirements that get picked up but are
 # undesirable. One entry per line, no whitespace.
 bzr
+matplotlib
+pypi(pivy)
+pypi(pyside2)
+pypi(shiboken2)
+pyside2-setup
+pyside2-setup-dev
