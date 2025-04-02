@@ -7,7 +7,7 @@
 #
 Name     : FreeCAD
 Version  : 1.0.0
-Release  : 30
+Release  : 31
 URL      : https://github.com/FreeCAD/FreeCAD/archive/1.0.0/FreeCAD-1.0.0.tar.gz
 Source0  : https://github.com/FreeCAD/FreeCAD/archive/1.0.0/FreeCAD-1.0.0.tar.gz
 Source1  : https://github.com/Ondsel-Development/OndselSolver/archive/09d6175a2ba69e7016fcecc4f384946a2f84f92d/OndselSolver-09d6175a2ba69e7016fcecc4f384946a2f84f92d.tar.gz
