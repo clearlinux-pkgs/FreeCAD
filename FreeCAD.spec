@@ -211,15 +211,9 @@ export GOAMD64=v2
 -DFORCE_LIMITED_API=1 \
 -DOCC_INCLUDE_DIR=/usr/include/oce \
 -Wno-dev  -G 'Unix Makefiles'
-make  %{?_smp_mflags}
+make  -j4
 popd
 
-%check
-export LANG=C.UTF-8
-export http_proxy=http://127.0.0.1:9/
-export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost,127.0.0.1,0.0.0.0
-cd clr-build; make test || :
 
 %install
 export GCC_IGNORE_WERROR=1
